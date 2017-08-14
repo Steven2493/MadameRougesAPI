@@ -14,6 +14,7 @@ require "action_cable/engine"
 require "bcrypt"
 require "pry"
 require "pry-byebug"
+require "faker"
 
 
 # Require the gems listed in Gemfile, including any gems
