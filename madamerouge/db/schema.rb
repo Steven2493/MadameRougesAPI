@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170814185828) do
 
   # These are extensions that must be enabled in order to support this database
@@ -32,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170814185828) do
     t.datetime "updated_at", null: false
   end
 
+
+
   create_table "menu_items", force: :cascade do |t|
     t.bigint "menu_id", null: false
     t.bigint "recipe_id", null: false
@@ -47,5 +50,6 @@ ActiveRecord::Schema.define(version: 20170814185828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 
 end
