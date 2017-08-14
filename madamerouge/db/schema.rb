@@ -16,6 +16,27 @@ ActiveRecord::Schema.define(version: 20170814185828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "type", null: false
+    t.string "difficulty", null: false
+    t.text "directions", null: false
+    t.string "preptime", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+  
   create_table "ingredients", force: :cascade do |t|
     t.string "amount", null: false
     t.string "measurement", null: false
@@ -33,8 +54,6 @@ ActiveRecord::Schema.define(version: 20170814185828) do
     t.datetime "updated_at", null: false
   end
 
-
-
   create_table "menu_items", force: :cascade do |t|
     t.bigint "menu_id", null: false
     t.bigint "recipe_id", null: false
@@ -50,6 +69,5 @@ ActiveRecord::Schema.define(version: 20170814185828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
 end
