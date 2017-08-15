@@ -13,7 +13,7 @@ class MenusController < ApplicationController
   def create
     menu = Menu.new(menu_params)
     if menu.save
-      render json: {menu}
+      render :json => menu
     else
       render status: 400
     end
