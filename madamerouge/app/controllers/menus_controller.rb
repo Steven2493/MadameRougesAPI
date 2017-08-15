@@ -9,4 +9,33 @@ class MenusController < ApplicationController
     @all = {menu: @menu_hash, menu_items: @info}
     render json: @all
   end
+
+  def create
+    menu = Menu.new(menu_params)
+    if menu.save
+      render json: {menu}
+    else
+      render status: 400
+    end
+  end
+
+  def update
+    @menu.find_by(id: params[:menu][:id])
+    @menu.start_at = params[:menu][:start_at]
+    @menu.end_at = params[:menu][:end_at]
+    @menu.save
+    render json: @menu
+  end
+
+  def destroy
+    @menu.find_by(id: params[:menu][:id])
+    @menu.destroy
+  end
+
+  private
+
+  def menu_params
+    params.require(:menu).permit(:start_at, :end_at)
+  end
+
 end
