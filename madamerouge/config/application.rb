@@ -74,4 +74,5 @@ module Madamerouge
     'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
   }
   end
+
 end
