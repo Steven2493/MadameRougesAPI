@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create]
+  resources :recipes, only: [:create, :show, :index]
   get "/logout", to: "sessions#destroy"
 end

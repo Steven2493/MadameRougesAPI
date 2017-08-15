@@ -37,8 +37,10 @@ end
   items << Item.create!(name: Faker::Food.ingredient)
 end
 
-200.times do
-  Ingredient.create!(recipe: recipes.sample, item: items.sample, amount: amounts.sample, measurement: Faker::Food.metric_measurement)
+recipes.each do |recipe|
+  6.times do
+    Ingredient.create!(recipe: recipe, item: items.sample, amount: amounts.sample, measurement: Faker::Food.metric_measurement)
+  end
 end
 
 current_start = Date.today.beginning_of_week.beginning_of_day
@@ -56,8 +58,3 @@ menus << Menu.create(start_at: current_start+21.day, end_at: current_end+21.day)
 120.times do
   MenuItem.create!(menu: menus.sample, recipe: recipes.sample)
 end
-
-
-
-
-
