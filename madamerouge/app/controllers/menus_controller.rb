@@ -10,6 +10,12 @@ class MenusController < ApplicationController
     render json: @all
   end
 
+  def all_menus
+    @menus = Menu.all.order(:start_at)
+
+    render json: @menus
+  end
+
   def create
     menu = Menu.new(menu_params)
     if menu.save
