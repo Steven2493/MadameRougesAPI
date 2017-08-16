@@ -16,8 +16,8 @@ class MenusController < ApplicationController
 
   def all_menus
     @menus = Menu.all.order(:start_at)
-
-    render json: @menus
+    @formatted_menus = @menus.map { |menu| { id: menu.id, start_at: menu.start_at.strftime("%b %d, %Y") } }
+    render json: @formatted_menus
   end
 
   def create
@@ -27,6 +27,18 @@ class MenusController < ApplicationController
     else
       render status: 400
     end
+  end
+
+  def show
+    @info = []
+    @menu = Menu.find_by(id: params[:id])
+
+    @menu.menu_items.each do |item|
+      @info << Recipe.find(item.recipe_id)
+    end
+
+    @all = {menu: @menu, menu_items: @info}
+    render json: @all
   end
 
   def update

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :recipes, only: [:create, :show, :index]
   get "/logout", to: "sessions#destroy"
   get "/madame", to: "menus#all_menus"
+  get "/menus/:id", to: "menus#show"
 end
