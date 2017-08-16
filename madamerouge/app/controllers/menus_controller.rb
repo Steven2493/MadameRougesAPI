@@ -21,12 +21,22 @@ class MenusController < ApplicationController
   end
 
   def create
-    menu = Menu.new(menu_params)
-    if menu.save
-      render :json => menu
-    else
-      render status: 400
+    @menu = Menu.new
+    @menu.start_at = params[:menu][:start_at]
+    @menu.end_at = params[:menu][:start_at]
+    @menu.save
+
+    params[:menu_items].each do |menu_item|
+      item = MenuItem.new
+      item.menu = @menu
+      item.recipe = Recipe.find_by(name: menu_item[:menu_item])
+      item.save
     end
+    # if menu.save
+    #   render :json => menu
+    # else
+    #   render status: 400
+    # end
   end
 
   def show
