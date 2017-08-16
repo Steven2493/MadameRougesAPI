@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
       ing = Ingredient.new
       ing.amount = ingredient[:amount]
       ing.measurement = ingredient[:measurement]
-      ing.recipe = Recipe.last
+      ing.recipe = @recipe
       ing.item =@item
       ing.save
     end
